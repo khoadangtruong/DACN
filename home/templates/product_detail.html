@@ -1,0 +1,86 @@
+{% extends 'homebase.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {{ product.title }} {% endblock %}
+{% block description %} {{ product.description }} {% endblock %}
+{% block keywords %} {{ product.keywords }} {% endblock %}
+
+{% block body %}
+
+    <!-- BREADCRUMB -->
+    {% comment %} <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/category/{{ product.category.id }}/{{ product.category.slug }}">{{ product.category.title }}</a></li>
+                <li class="active">{{ product.title }}</li>
+            </ul>
+        </div>
+    </div> {% endcomment %}
+    <!-- /BREADCRUMB -->
+
+    <div class="single_product">
+		<div class="container">
+			<div class="row">
+				<!-- Images -->
+				
+				<div class="col-lg-2 order-lg-1 order-2">
+					{% for rs in images %}
+						<ul class="image_list">
+							<li data-image="{{ rs.image.url }}"><img src="{{ rs.image.url }}" alt=""></li>
+						</ul>
+					{% endfor %}
+				</div>
+				
+				<!-- Selected Image -->
+				<div class="col-lg-5 order-lg-2 order-1">
+					<div class="image_selected"><img src="{{ product.image.url }}" alt=""></div>
+				</div>
+				<!-- Description -->
+				
+					<div class="col-lg-5 order-3">
+						<div class="product_description">
+							<div class="product_category">{{ product.category }}</div>
+							<div class="product_name">{{ product.title }}</div>
+							<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
+							<div class="product_text">{{ product.detail | safe }}</div>
+							<div class="order_info d-flex flex-row">
+								<form action="/order/addtoshopcart/{{product.id}}" method="post">
+									{% csrf_token %}
+									<div class="clearfix" style="z-index: 1000;">
+										<!-- Product Quantity -->
+										<div class="product_quantity ">
+											<span>Quantity: </span>
+											<input id="quantity_input" name="quantity" type="number" value="1" min="1" max="{{product.amount}}" style="width: 70px;">
+										</div>
+										<!-- Product Color -->
+										<ul class="product_color">
+											<li>
+												<span>Color: </span>
+												<div class="color_mark_container"><div id="selected_color" class="color_mark"></div></div>
+												<div class="color_dropdown_button"><i class="fas fa-chevron-down"></i></div>
+
+												<ul class="color_list">
+													<li><div class="color_mark" style="background: #999999;"></div></li>
+													<li><div class="color_mark" style="background: #b19c83;"></div></li>
+													<li><div class="color_mark" style="background: #000000;"></div></li>
+												</ul>
+											</li>
+										</ul>
+
+									</div>
+
+									<div class="product_price" style="margin-top: 15px; font-size: 16px; font-weight: 500; color: red">${{ product.price }}</div>
+									<div class="button_container">
+										<button type="submit" class="button cart_button">Add to Cart</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+    
+{% endblock %}

@@ -1,0 +1,64 @@
+{% load static %}}
+<div class="best_sellers">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="tabbed_container">
+						<div class="tabs clearfix tabs-right">
+							<div class="new_arrivals_title">Poducts today</div>
+							<ul class="clearfix">
+								<li class="active">Best sellers</li>
+								<li class="active">New</li> 
+							</ul>
+							<div class="tabs_line"><span></span></div>
+						</div>
+						
+						<div class="bestsellers_panel panel active">
+							<div class="bestsellers_slider slider">
+								{% for rs in products_top10 %}
+									<div class="bestsellers_item">
+										<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
+											<div class="bestsellers_image"><img src="{{ rs.image.url }}" alt=""></div>
+											<div class="bestsellers_content">
+												<div class="bestsellers_category"><a href="/category/{{ rs.category_id }}/{{ rs.category.slug }}">{{ rs.category }}</a></div>
+												<div class="bestsellers_name"><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></div>
+												<div class="bestsellers_price">$ {{ rs.price }}</span></div>
+											</div>
+										</div>
+										<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
+										<ul class="bestsellers_marks">
+											<li class="bestsellers_mark bestsellers_new">new</li>
+										</ul>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						
+
+						<div class="bestsellers_panel panel">
+							<div class="bestsellers_slider slider">
+								{% for rs in products_new %}
+									<div class="bestsellers_item discount">
+										<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
+											<div class="bestsellers_image"><img src="{{ rs.image.url}}" alt=""></div>
+											<div class="bestsellers_content">
+												<div class="bestsellers_category"><a href="#">{{ rs.category }}</a></div>
+												<div class="bestsellers_name"><a href="product.html">{{ rs.title }}</a></div>
+												<div class="bestsellers_price discount">{{ rs.price }}</span></div>
+											</div>
+										</div>
+										<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
+										<ul class="bestsellers_marks">
+											<li class="bestsellers_mark bestsellers_discount">-25%</li>
+											<li class="bestsellers_mark bestsellers_new">new</li>
+										</ul>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+						
+				</div>
+			</div>
+		</div>
+	</div>
