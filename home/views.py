@@ -21,15 +21,19 @@ def index(request):
 
 def about(request):
     setting = Setting.objects.get(pk = 1)
+    category = Category.objects.all()
     context = {
         'setting': setting,
+        'category': category,
     }
     return render(request, 'about.html', context)
 
 def contact(request):
     setting = Setting.objects.get(pk = 1)
+    category = Category.objects.all()
     context = {
         'setting': setting,
+        'category': category,
         }
     return render(request, 'contact.html', context)
 

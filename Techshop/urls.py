@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from home import views
 from order import views as OrderViews
+from user import views as UserViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +38,10 @@ urlpatterns = [
     path('product/<int:id>/<slug:slug>', views.product_detail, name = 'product_detail'),
     
     path('shopcart/',OrderViews.shopcart, name='shopcart'),
+
+    path('login/',UserViews.login_form, name='login_form'),
+    path('logout/',UserViews.logout_func, name='logout_func'),
+    path('register/',UserViews.register_form, name='register_form'),
 ]
 
 if settings.DEBUG:

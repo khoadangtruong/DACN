@@ -30,9 +30,14 @@
 								</ul>
 							</div>
 							<div class="top_bar_user">
-								<div class="user_icon"><img src="{% static 'images/user.svg ' %}" alt=""></div>
-								<div><a href="#">Register</a></div>
-								<div><a href="#">Sign in</a></div>
+								{% if user.id is not None%}
+									<div class="user_icon"><img src="{{ request.session.userimage }}" style="height: 28px; width: 30px; border-radius: 30%;" alt="user-img"></div>
+									<div><a href="/logout">Logout</a></div>
+								{% else %}
+									<div class="user_icon"><img src="{% static 'images/user.svg ' %}" alt=""></div>
+									<div><a href="/register">Register</a></div>
+									<div><a href="/login">Sign in</a></div>
+								{% endif %}
 							</div>
 						</div>
 					</div>
