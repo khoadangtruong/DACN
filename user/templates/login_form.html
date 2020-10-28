@@ -5,17 +5,6 @@
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 {% block body %}
 
-	<!-- BREADCRUMB -->
-	{% comment %} <div id="breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb">
-                <li><a href="{% url 'home' %}">{% trans "Home" %} </a></li>
-                <li class="active">User Login</li>
-			</ul>
-		</div>
-	</div> {% endcomment %}
-	<!-- /BREADCRUMB -->
-
 	<!-- section -->
 	<div class="section">
 		<!-- container -->
@@ -27,17 +16,10 @@
                         <div class="section-title">
                             <h3 class="title">{% trans "Login Form" %}</h3>
                         </div>
-                        {% comment %} {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{message.tags}}" role="alert">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %} {% endcomment %}
                         <form action="" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-								<input class="input" type="text" name="username" placeholder="Fuser Name">
+								<input class="input" type="text" name="username" placeholder="First Name">
 							</div>
 							<div class="form-group">
 								<input class="input" type="password" name="password" placeholder="Password">

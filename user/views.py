@@ -1,3 +1,4 @@
+from user.form import RegisterForm
 from user.models import UserProfile
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -36,8 +37,23 @@ def logout_func(request):
     return HttpResponseRedirect('/')
 
 def register_form(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request, form.errors)
+            return HttpResponseRedirect('/register')
+
+    form = RegisterForm()
     category = Category.objects.all()
     context = {
         'category': category,
+        'form': form,
     }
     return render(request, 'register_form.html', context)

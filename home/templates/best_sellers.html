@@ -10,7 +10,7 @@
 								<li class="active">Best sellers</li>
 								<li class="active">New</li> 
 							</ul>
-							<div class="tabs_line"><span></span></div>
+							<div class="tabs_line"></div>
 						</div>
 						
 						<div class="bestsellers_panel panel active">
@@ -26,9 +26,9 @@
 											</div>
 										</div>
 										<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-										<ul class="bestsellers_marks">
+										{% comment %} <ul class="bestsellers_marks">
 											<li class="bestsellers_mark bestsellers_new">new</li>
-										</ul>
+										</ul> {% endcomment %}
 									</div>
 								{% endfor %}
 							</div>
@@ -42,16 +42,16 @@
 										<div class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
 											<div class="bestsellers_image"><img src="{{ rs.image.url}}" alt=""></div>
 											<div class="bestsellers_content">
-												<div class="bestsellers_category"><a href="#">{{ rs.category }}</a></div>
-												<div class="bestsellers_name"><a href="product.html">{{ rs.title }}</a></div>
-												<div class="bestsellers_price discount">{{ rs.price }}</span></div>
+												<div class="bestsellers_category"><a href="/category/{{ rs.category_id }}/{{ rs.category.slug }}">{{ rs.category }}</a></div>
+												<div class="bestsellers_name"><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></div>
+												<div class="bestsellers_price discount">$ {{ rs.price }}</span></div>
 											</div>
 										</div>
 										<div class="bestsellers_fav active"><i class="fas fa-heart"></i></div>
-										<ul class="bestsellers_marks">
+										{% comment %} <ul class="bestsellers_marks">
 											<li class="bestsellers_mark bestsellers_discount">-25%</li>
 											<li class="bestsellers_mark bestsellers_new">new</li>
-										</ul>
+										</ul> {% endcomment %}
 									</div>
 								{% endfor %}
 							</div>

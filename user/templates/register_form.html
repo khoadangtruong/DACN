@@ -1,0 +1,44 @@
+{% extends 'homebase.html' %}
+{% load i18n %}
+{% block title %} User Register {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block body %}
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="billing-details">
+                        <div class="section-title">
+                            <h3 class="title">Register</h3>
+                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <p>
+                                    {{ field.label_tag }}<br>
+                                    {{ field }}
+                                    {% if field.help_text %}
+                                        <small style="color: gray;">{{ field.help_text }}</small>
+                                    {% endif %}
+                                    {% for error in field.errors %}
+                                        <p style="color: red;">{{ error }}</p>
+                                    {% endfor %}
+                                </p>
+                            {% endfor %}
+                            <button type="submit">Register</button>
+                        </form>
+                    </div>
+                </div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+{% endblock %}
